@@ -27,21 +27,45 @@ namespace Fuel.Models
             modelBuilder.Entity<dcDocuments>()
                 .Property(d => d.dcID)
                 .HasDefaultValueSql($"NEXT VALUE FOR dcID");
+            modelBuilder.Entity<dcDocuments>()
+                .Property(d => d.CreateAt)
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.HasSequence<int>("dfiID");
             modelBuilder.Entity<esfDailyFuelItems>()
                 .Property(fi => fi.dfiID)
                 .HasDefaultValueSql($"NEXT VALUE FOR dfiID");
+            modelBuilder.Entity<esfDailyFuelItems>()
+                .Property(fi => fi.CreateAt)
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.HasSequence<int>("fuID");
             modelBuilder.Entity<esfFuelTypes>()
                 .Property(ft => ft.fuID)
                 .HasDefaultValueSql($"NEXT VALUE FOR fuID");
+            modelBuilder.Entity<esfFuelTypes>()
+                .Property(ft => ft.CreateAt)
+                .HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<esfFuelTypes>()
+                .Property(ft => ft.IsHasIncome)
+                .HasDefaultValue(false);
+            modelBuilder.Entity<esfFuelTypes>()
+                .Property(ft => ft.IsHasOutcome)
+                .HasDefaultValue(false);
+            modelBuilder.Entity<esfFuelTypes>()
+                .Property(ft => ft.IsHasRemasins)
+                .HasDefaultValue(false);
+            modelBuilder.Entity<esfFuelTypes>()
+                .Property(ft => ft.IsActive)
+                .HasDefaultValue(true);
 
             modelBuilder.HasSequence<int>("eoID");
             modelBuilder.Entity<mnEnergyObjects>()
                 .Property(eo => eo.eoID)
                 .HasDefaultValueSql($"NEXT VALUE FOR eoID");
+            modelBuilder.Entity<mnEnergyObjects>()
+                .Property(eo => eo.CreateAt)
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.HasSequence<int>("eofID");
             modelBuilder.Entity<mnEnergyObjectFuel>()
@@ -52,6 +76,9 @@ namespace Fuel.Models
             modelBuilder.Entity<mnEnergyObjectFiles>()
                 .Property(eofl => eofl.eoflID)
                 .HasDefaultValueSql($"NEXT VALUE FOR eoflID");
+            modelBuilder.Entity<mnEnergyObjectFiles>()
+                .Property(eofl => eofl.IsDefault)
+                .HasDefaultValue(false);
         }
     }
 }

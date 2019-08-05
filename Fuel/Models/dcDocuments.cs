@@ -25,5 +25,9 @@ namespace Fuel.Models
         public int emID { get; set; }
         [StringLength(500)]
         public string Comment { get; set; }
+        public DateTime CreateAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime EditAt { get; set; }
+        public int EditBy { get; set; }
     }
 }

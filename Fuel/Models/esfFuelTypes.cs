@@ -26,5 +26,9 @@ namespace Fuel.Models
         public bool IsHasRemasins { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        public DateTime CreateAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime EditAt { get; set; }
+        public int EditBy { get; set; }
     }
 }

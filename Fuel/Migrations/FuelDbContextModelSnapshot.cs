@@ -34,8 +34,18 @@ namespace Fuel.Migrations
                     b.Property<string>("Comment")
                         .HasMaxLength(500);
 
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("CreateBy");
+
                     b.Property<string>("Discriminator")
                         .IsRequired();
+
+                    b.Property<DateTime>("EditAt");
+
+                    b.Property<int>("EditBy");
 
                     b.Property<byte[]>("HIID")
                         .IsConcurrencyToken()
@@ -65,6 +75,16 @@ namespace Fuel.Migrations
                     b.Property<int>("dfiID")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("NEXT VALUE FOR dfiID");
+
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("CreateBy");
+
+                    b.Property<DateTime>("EditAt");
+
+                    b.Property<int>("EditBy");
 
                     b.Property<string>("FileName")
                         .HasMaxLength(255);
@@ -108,17 +128,35 @@ namespace Fuel.Migrations
 
                     b.Property<int>("Code");
 
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("CreateBy");
+
+                    b.Property<DateTime>("EditAt");
+
+                    b.Property<int>("EditBy");
+
                     b.Property<byte[]>("HIID")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<bool>("IsActive");
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(true);
 
-                    b.Property<bool>("IsHasIncome");
+                    b.Property<bool>("IsHasIncome")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
-                    b.Property<bool>("IsHasOutcome");
+                    b.Property<bool>("IsHasOutcome")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
-                    b.Property<bool>("IsHasRemasins");
+                    b.Property<bool>("IsHasRemasins")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -151,7 +189,9 @@ namespace Fuel.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<bool>("IsDefault");
+                    b.Property<bool>("IsDefault")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Path")
                         .IsRequired()
@@ -194,6 +234,16 @@ namespace Fuel.Migrations
                     b.Property<int>("eoID")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("NEXT VALUE FOR eoID");
+
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("CreateBy");
+
+                    b.Property<DateTime>("EditAt");
+
+                    b.Property<int>("EditBy");
 
                     b.Property<byte[]>("HIID")
                         .IsConcurrencyToken()

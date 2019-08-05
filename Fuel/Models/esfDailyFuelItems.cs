@@ -32,5 +32,9 @@ namespace Fuel.Models
         public int Remains { get; set; }
         [StringLength(255)]
         public string FileName { get; set; }
+        public DateTime CreateAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime EditAt { get; set; }
+        public int EditBy { get; set; }
     }
 }

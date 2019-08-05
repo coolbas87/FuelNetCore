@@ -36,6 +36,10 @@ namespace Fuel.Migrations
                     dcType = table.Column<string>(maxLength: 20, nullable: false),
                     emID = table.Column<int>(nullable: false),
                     Comment = table.Column<string>(maxLength: 500, nullable: true),
+                    CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                    CreateBy = table.Column<int>(nullable: false),
+                    EditAt = table.Column<DateTime>(nullable: false),
+                    EditBy = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -51,10 +55,14 @@ namespace Fuel.Migrations
                     HIID = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Code = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    IsHasIncome = table.Column<bool>(nullable: false),
-                    IsHasOutcome = table.Column<bool>(nullable: false),
-                    IsHasRemasins = table.Column<bool>(nullable: false),
-                    IsActive = table.Column<bool>(nullable: false)
+                    IsHasIncome = table.Column<bool>(nullable: false, defaultValue: false),
+                    IsHasOutcome = table.Column<bool>(nullable: false, defaultValue: false),
+                    IsHasRemasins = table.Column<bool>(nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(nullable: false, defaultValue: true),
+                    CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                    CreateBy = table.Column<int>(nullable: false),
+                    EditAt = table.Column<DateTime>(nullable: false),
+                    EditBy = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +76,11 @@ namespace Fuel.Migrations
                     eoID = table.Column<int>(nullable: false, defaultValueSql: "NEXT VALUE FOR eoID"),
                     HIID = table.Column<byte[]>(rowVersion: true, nullable: true),
                     eoCode = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 255, nullable: false)
+                    Name = table.Column<string>(maxLength: 255, nullable: false),
+                    CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                    CreateBy = table.Column<int>(nullable: false),
+                    EditAt = table.Column<DateTime>(nullable: false),
+                    EditBy = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,6 +100,10 @@ namespace Fuel.Migrations
                     Outcome = table.Column<int>(nullable: false),
                     Remains = table.Column<int>(nullable: false),
                     FileName = table.Column<string>(maxLength: 255, nullable: true),
+                    CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                    CreateBy = table.Column<int>(nullable: false),
+                    EditAt = table.Column<DateTime>(nullable: false),
+                    EditBy = table.Column<int>(nullable: false),
                     esfDailyFueldcID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -130,7 +146,7 @@ namespace Fuel.Migrations
                     Filename = table.Column<string>(maxLength: 10, nullable: false),
                     DateFormat = table.Column<string>(maxLength: 10, nullable: false),
                     FileExt = table.Column<string>(maxLength: 3, nullable: false),
-                    IsDefault = table.Column<bool>(nullable: false)
+                    IsDefault = table.Column<bool>(nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
