@@ -16,8 +16,6 @@ namespace Fuel.Models
         public int dfiID { get; set; }
         [Required]
         public int dcID { get; set; }
-        [ForeignKey("dcID")]
-        public dcDocuments dcDocuments { get; set; }
         [Required]
         public int eoID { get; set; }
         public mnEnergyObjects mnEnergyObjects { get; set; }
@@ -36,5 +34,7 @@ namespace Fuel.Models
         public int CreateBy { get; set; }
         public DateTime EditAt { get; set; }
         public int EditBy { get; set; }
+        [ForeignKey("dcID")]
+        public esfDailyFuel esfDailyFuel { get; set; }
     }
 }

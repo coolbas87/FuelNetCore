@@ -24,7 +24,9 @@ namespace Fuel
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FuelDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestLocal")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

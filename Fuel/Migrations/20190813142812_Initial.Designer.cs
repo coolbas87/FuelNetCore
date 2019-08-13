@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fuel.Migrations
 {
     [DbContext(typeof(FuelDbContext))]
-    [Migration("20190805145555_Initial")]
+    [Migration("20190813142812_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,8 +105,6 @@ namespace Fuel.Migrations
 
                     b.Property<int>("eoID");
 
-                    b.Property<int?>("esfDailyFueldcID");
-
                     b.Property<int>("fuID");
 
                     b.HasKey("dfiID");
@@ -114,8 +112,6 @@ namespace Fuel.Migrations
                     b.HasIndex("dcID");
 
                     b.HasIndex("eoID");
-
-                    b.HasIndex("esfDailyFueldcID");
 
                     b.HasIndex("fuID");
 
@@ -271,8 +267,8 @@ namespace Fuel.Migrations
 
             modelBuilder.Entity("Fuel.Models.esfDailyFuelItems", b =>
                 {
-                    b.HasOne("Fuel.Models.dcDocuments", "dcDocuments")
-                        .WithMany()
+                    b.HasOne("Fuel.Models.esfDailyFuel", "esfDailyFuel")
+                        .WithMany("Items")
                         .HasForeignKey("dcID")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -280,10 +276,6 @@ namespace Fuel.Migrations
                         .WithMany()
                         .HasForeignKey("eoID")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Fuel.Models.esfDailyFuel")
-                        .WithMany("Items")
-                        .HasForeignKey("esfDailyFueldcID");
 
                     b.HasOne("Fuel.Models.esfFuelTypes", "esfFuelTypes")
                         .WithMany()

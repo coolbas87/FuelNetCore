@@ -103,8 +103,7 @@ namespace Fuel.Migrations
                     CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     CreateBy = table.Column<int>(nullable: false),
                     EditAt = table.Column<DateTime>(nullable: false),
-                    EditBy = table.Column<int>(nullable: false),
-                    esfDailyFueldcID = table.Column<int>(nullable: true)
+                    EditBy = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,12 +120,6 @@ namespace Fuel.Migrations
                         principalTable: "mnEnergyObjects",
                         principalColumn: "eoID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_esfDailyFuelItems_dcDocuments_esfDailyFueldcID",
-                        column: x => x.esfDailyFueldcID,
-                        principalTable: "dcDocuments",
-                        principalColumn: "dcID",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_esfDailyFuelItems_esfFuelTypes_fuID",
                         column: x => x.fuID,
@@ -194,11 +187,6 @@ namespace Fuel.Migrations
                 name: "IX_esfDailyFuelItems_eoID",
                 table: "esfDailyFuelItems",
                 column: "eoID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_esfDailyFuelItems_esfDailyFueldcID",
-                table: "esfDailyFuelItems",
-                column: "esfDailyFueldcID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_esfDailyFuelItems_fuID",
