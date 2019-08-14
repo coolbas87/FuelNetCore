@@ -28,24 +28,29 @@ namespace Fuel.Controllers
         }
 
         // GET: api/DailyFuel/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<esfDailyFuel>> GetesfDailyFuel(int id)
+        [HttpGet("{dcID}")]
+        public async Task<ActionResult<esfDailyFuel>> GetesfDailyFuel(int dcID)
         {
-            var esfDailyFuel = await _context.esfDailyFuel.Include(d => d.Items).FirstAsync(d => d.dcID == id);
+            var doc = await _context.esfDailyFuel
+                .Include(d => d.Items)
+                    .ThenInclude(ft => ft.esfFuelTypes)
+                .Include(d => d.Items)
+                    .ThenInclude(eo => eo.mnEnergyObjects)
+                .FirstOrDefaultAsync(d => d.dcID == dcID);
 
-            if (esfDailyFuel == null)
+            if (doc == null)
             {
                 return NotFound();
             }
 
-            return esfDailyFuel;
+            return doc;
         }
 
         // PUT: api/DailyFuel/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutesfDailyFuel(int id, esfDailyFuel esfDailyFuel)
+        [HttpPut("{dcID}")]
+        public async Task<IActionResult> PutesfDailyFuel(int dcID, esfDailyFuel esfDailyFuel)
         {
-            if (id != esfDailyFuel.dcID)
+            if (dcID != esfDailyFuel.dcID)
             {
                 return BadRequest();
             }
@@ -58,7 +63,7 @@ namespace Fuel.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!esfDailyFuelExists(id))
+                if (!esfDailyFuelExists(dcID))
                 {
                     return NotFound();
                 }
@@ -82,10 +87,10 @@ namespace Fuel.Controllers
         }
 
         // DELETE: api/DailyFuel/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<esfDailyFuel>> DeleteesfDailyFuel(int id)
+        [HttpDelete("{dcID}")]
+        public async Task<ActionResult<esfDailyFuel>> DeleteesfDailyFuel(int dcID)
         {
-            var esfDailyFuel = await _context.esfDailyFuel.FindAsync(id);
+            var esfDailyFuel = await _context.esfDailyFuel.FindAsync(dcID);
             if (esfDailyFuel == null)
             {
                 return NotFound();
@@ -97,9 +102,9 @@ namespace Fuel.Controllers
             return esfDailyFuel;
         }
 
-        private bool esfDailyFuelExists(int id)
+        private bool esfDailyFuelExists(int dcID)
         {
-            return _context.esfDailyFuel.Any(e => e.dcID == id);
+            return _context.esfDailyFuel.Any(e => e.dcID == dcID);
         }
     }
 }
