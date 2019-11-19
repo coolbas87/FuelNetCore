@@ -42,7 +42,7 @@ namespace Fuel.Controllers
         }
 
         // PUT: api/esfFuelTypes/5
-        [HttpPut("{id}")]
+        [HttpPut("{fuID}")]
         public async Task<IActionResult> PutesfFuelTypes(int fuID, esfFuelTypes esfFuelTypes)
         {
             if (fuID != esfFuelTypes.fuID)
