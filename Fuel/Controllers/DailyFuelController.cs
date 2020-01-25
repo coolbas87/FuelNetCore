@@ -90,7 +90,7 @@ namespace Fuel.Controllers
                 return BadRequest();
             }
 
-            esfDailyFuel doc = _context.esfDailyFuel.FirstOrDefault(d => d.dcID == dcID);
+            esfDailyFuel doc = _context.esfDailyFuel.Include(d => d.Items).FirstOrDefault(d => d.dcID == dcID);
 
             doc.dcNo = DailyFuel.dcNo;
             doc.dcDate = DailyFuel.dcDate;
@@ -98,12 +98,44 @@ namespace Fuel.Controllers
             doc.Comment = DailyFuel.Comment;
 
             doc.Items.RemoveAll(item => !DailyFuel.Items.Any(i => i.dfiID == item.dfiID));
-            
-            var fm = (from items in doc.Items
-                      from updItems in DailyFuel.Items
-                      where (items.dfiID == updItems.dfiID)
 
-                      select items);
+            foreach (var updItem in DailyFuel.Items)
+            {
+                var item = doc.Items.FirstOrDefault(i => (updItem.dfiID == i.dfiID));
+
+                if (item == null)
+                {
+                    item = new esfDailyFuelItems
+                    {
+                        HIID = null,
+                        dfiID = 0,
+                        dcID = doc.dcID,
+                        Income = updItem.Income,
+                        Outcome = updItem.Outcome,
+                        Remains = updItem.Remains,
+                        FileName = updItem.FileName,
+                        eoID = updItem.eoID,
+                        fuID = updItem.fuID,
+                        CreateAt = DateTime.Now,
+                        CreateBy = 0,
+                    };
+                    doc.Items.Add(item);
+                }
+                else
+                {
+                    if (((updItem.eoID != item.eoID) || (updItem.FileName != item.FileName) || (updItem.fuID != item.fuID) || (updItem.Income != item.Income) ||
+                        (updItem.Outcome != item.Outcome) || (updItem.Remains != item.Remains)))
+                    {
+                        item.eoID = updItem.eoID;
+                        item.fuID = updItem.fuID;
+                        item.FileName = updItem.FileName;
+                        item.Income = updItem.Income;
+                        item.Outcome = updItem.Outcome;
+                        item.Remains = updItem.Remains;
+                        item.EditAt = DateTime.Now;
+                    }
+                }
+            }
 
             _context.Entry(doc).State = EntityState.Modified;
 
