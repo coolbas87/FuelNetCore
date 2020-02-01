@@ -24,7 +24,7 @@ namespace Fuel.InitData
                                 Name = "Мазут",
                                 IsHasIncome = true,
                                 IsHasOutcome = true,
-                                IsHasRemasins = true,
+                                IsHasRemains = true,
                                 IsActive = true
                             },
                             new esfFuelTypes
@@ -33,7 +33,7 @@ namespace Fuel.InitData
                                 Name = "Мазут(Сторонні організації)",
                                 IsHasIncome = true,
                                 IsHasOutcome = true,
-                                IsHasRemasins = true,
+                                IsHasRemains = true,
                                 IsActive = true
                             },
                             new esfFuelTypes
@@ -42,7 +42,7 @@ namespace Fuel.InitData
                                 Name = "Газ",
                                 IsHasIncome = false,
                                 IsHasOutcome = false,
-                                IsHasRemasins = true,
+                                IsHasRemains = true,
                                 IsActive = true
                             },
                             new esfFuelTypes
@@ -51,7 +51,7 @@ namespace Fuel.InitData
                                 Name = "Донецький АШ",
                                 IsHasIncome = true,
                                 IsHasOutcome = true,
-                                IsHasRemasins = true,
+                                IsHasRemains = true,
                                 IsActive = true
                             },
                             new esfFuelTypes
@@ -60,7 +60,7 @@ namespace Fuel.InitData
                                 Name = "Донецьке вугілля",
                                 IsHasIncome = true,
                                 IsHasOutcome = true,
-                                IsHasRemasins = true,
+                                IsHasRemains = true,
                                 IsActive = true
                             }
                         );

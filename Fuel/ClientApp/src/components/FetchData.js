@@ -7,7 +7,8 @@ export class FetchData extends Component {
     super(props);
     this.state = { forecasts: [], loading: true };
 
-    fetch('api/SampleData/WeatherForecasts')
+    //fetch('api/SampleData/WeatherForecasts')
+    fetch('api/esfFuelTypes')
       .then(response => response.json())
       .then(data => {
         this.setState({ forecasts: data, loading: false });
@@ -19,19 +20,33 @@ export class FetchData extends Component {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+                    <th>fuID</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Is active</th>
+                    <th>Is has income</th>
+                    <th>Is has outcome</th>
+                    <th>Is has remains</th>
+                    <th>Create at</th>
+                    <th>Create by</th>
+                    <th>Edit at</th>
+                    <th>Edit by</th>
           </tr>
         </thead>
         <tbody>
           {forecasts.map(forecast =>
-            <tr key={forecast.dateFormatted}>
-              <td>{forecast.dateFormatted}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+            <tr key={forecast.fuID}>
+                  <td>{forecast.fuID}</td>
+                  <td>{forecast.code}</td>
+                  <td>{forecast.name}</td>
+                  <td><input type="checkbox" checked={forecast.isActive} /*onChange={this.handleChange.bind(this, index)}*/ /></td>
+                  <td><input type="checkbox" checked={forecast.isHasIncome} /*onChange={this.handleChange.bind(this, index)}*/ /></td>
+                  <td><input type="checkbox" checked={forecast.isHasOutcome} /*onChange={this.handleChange.bind(this, index)}*/ /></td>
+                  <td><input type="checkbox" checked={forecast.isHasRemains} /*onChange={this.handleChange.bind(this, index)}*/ /></td>
+                  <td>{forecast.createAt}</td>
+                  <td>{forecast.createBy}</td>
+                  <td>{forecast.editAt}</td>
+                  <td>{forecast.editBy}</td>
             </tr>
           )}
         </tbody>

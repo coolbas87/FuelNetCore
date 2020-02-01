@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fuel.Migrations
 {
     [DbContext(typeof(FuelDbContext))]
-    [Migration("20190813142812_Initial")]
+    [Migration("20200201122117_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,7 +152,7 @@ namespace Fuel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
-                    b.Property<bool>("IsHasRemasins")
+                    b.Property<bool>("IsHasRemains")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 

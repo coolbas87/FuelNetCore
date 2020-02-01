@@ -53,7 +53,7 @@ namespace Fuel.Models
                 .Property(ft => ft.IsHasOutcome)
                 .HasDefaultValue(false);
             modelBuilder.Entity<esfFuelTypes>()
-                .Property(ft => ft.IsHasRemasins)
+                .Property(ft => ft.IsHasRemains)
                 .HasDefaultValue(false);
             modelBuilder.Entity<esfFuelTypes>()
                 .Property(ft => ft.IsActive)

@@ -23,7 +23,7 @@ namespace Fuel.Models
         [Required]
         public bool IsHasOutcome { get; set; }
         [Required]
-        public bool IsHasRemasins { get; set; }
+        public bool IsHasRemains { get; set; }
         [Required]
         public bool IsActive { get; set; }
         public DateTime CreateAt { get; set; }

@@ -57,7 +57,7 @@ namespace Fuel.Migrations
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     IsHasIncome = table.Column<bool>(nullable: false, defaultValue: false),
                     IsHasOutcome = table.Column<bool>(nullable: false, defaultValue: false),
-                    IsHasRemasins = table.Column<bool>(nullable: false, defaultValue: false),
+                    IsHasRemains = table.Column<bool>(nullable: false, defaultValue: false),
                     IsActive = table.Column<bool>(nullable: false, defaultValue: true),
                     CreateAt = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     CreateBy = table.Column<int>(nullable: false),

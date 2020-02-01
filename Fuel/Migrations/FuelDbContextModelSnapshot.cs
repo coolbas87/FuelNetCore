@@ -150,7 +150,7 @@ namespace Fuel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
-                    b.Property<bool>("IsHasRemasins")
+                    b.Property<bool>("IsHasRemains")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
